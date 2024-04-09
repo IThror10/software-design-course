@@ -1,5 +1,7 @@
 package org.example.execution.context;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.execution.descriptor.AbstractDescriptor;
 import org.example.execution.descriptor.DescriptorSet;
 
@@ -9,9 +11,11 @@ import java.nio.file.Paths;
 /**
  * Interpreter context in which command is evaluated
  */
+@Getter
+@Setter
 public class Context {
     private final Environment environment;
-    private final Path workingDirectory;
+    private Path workingDirectory;
     private final DescriptorSet descriptors;
 
     public Environment getEnvironment() {
