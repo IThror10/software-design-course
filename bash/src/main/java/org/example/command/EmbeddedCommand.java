@@ -1,12 +1,6 @@
 package org.example.command;
 
-import org.example.command.embedded.CatCommand;
-import org.example.command.embedded.EchoCommand;
-import org.example.command.embedded.EmptyCommand;
-import org.example.command.embedded.ExitCommand;
-import org.example.command.embedded.GrepCommand;
-import org.example.command.embedded.PwdCommand;
-import org.example.command.embedded.WcCommand;
+import org.example.command.embedded.*;
 
 import java.util.List;
 import java.util.Map;
@@ -38,6 +32,8 @@ public class EmbeddedCommand extends Command {
             Map.entry("cat", CatCommand.class),
             Map.entry("exit", ExitCommand.class),
             Map.entry("grep", GrepCommand.class),
+            Map.entry("cd", CdCommand.class),
+            Map.entry("ls", LsCommand.class),
             Map.entry("", EmptyCommand.class));
 
     public static boolean isEmbeddedCommandName(String commandName) {
@@ -64,6 +60,12 @@ public class EmbeddedCommand extends Command {
             }
             case "grep" -> {
                 return new GrepCommand(commandLineArguments, environmentVariables);
+            }
+            case "ls" -> {
+                return new LsCommand(commandLineArguments, environmentVariables);
+            }
+            case "cd" -> {
+                return new CdCommand(commandLineArguments, environmentVariables);
             }
             case "" -> {
                 return new EmptyCommand(commandLineArguments, environmentVariables);
